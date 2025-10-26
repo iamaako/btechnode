@@ -6,7 +6,6 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar';
 import VariableText from '@/components/VariableText';
 import TypewriterText from '@/components/TypewriterText';
-import SplitTextOnScroll from '@/components/SplitTextOnScroll';
 import { FaCheckCircle } from 'react-icons/fa';
 import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
 import { motion } from 'framer-motion';
@@ -74,9 +73,10 @@ export default function Home() {
                 delay={40}
               />
             ) : (
-              <SplitTextOnScroll
+              <TypewriterText
                 text="Your one-stop platform for B.Tech education. Access curated YouTube playlists, organized by subject and chapter, to enhance your engineering journey."
                 className="text-sm sm:text-base md:text-xl text-gray-300 mb-8 max-w-3xl mx-auto"
+                delay={40}
               />
             )}
           </motion.div>

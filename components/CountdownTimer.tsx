@@ -37,7 +37,7 @@ export default function CountdownTimer() {
     }
 
     timerComponents.push(
-      <div className="text-center">
+      <div key={interval} className="text-center">
         <span className="timer-number">{timeLeft[interval as keyof typeof timeLeft]}</span>
         <span className="timer-label">{interval}</span>
       </div>
