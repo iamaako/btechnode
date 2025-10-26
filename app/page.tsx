@@ -4,17 +4,12 @@ import { useState } from 'react';
 import Image from 'next/image'
 import Link from 'next/link'
 import Navbar from '@/components/Navbar';
-import AnimateOnScroll from '@/components/AnimateOnScroll';
 import VariableText from '@/components/VariableText';
 import TypewriterText from '@/components/TypewriterText';
 import SplitTextOnScroll from '@/components/SplitTextOnScroll';
-import AtomLoader from '@/components/AtomLoader';
-import { FaYoutube, FaGraduationCap, FaUsers, FaLightbulb, FaCheckCircle } from 'react-icons/fa';
-import { BiBookReader } from 'react-icons/bi';
-import { MdEngineering } from 'react-icons/md';
-import { FaGithub, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa'
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { MdUpload, MdPlaylistAdd, MdInfo, MdLibraryBooks, MdSchool } from 'react-icons/md';
+import { FaCheckCircle } from 'react-icons/fa';
+import { FaGithub, FaLinkedin, FaInstagram } from 'react-icons/fa'
+import { motion } from 'framer-motion';
 import { useMediaQuery } from '@/hooks/useMediaQuery';
 import { developers } from '@/lib/developers';
 import AnimatedComingSoon from '@/components/AnimatedComingSoon';
@@ -31,110 +26,6 @@ type Developer = {
   instagram_url: string | null
   college_name: string | null
 }
-
-const instructionSteps = [
-  {
-    title: "Choose Your Playlist",
-    icon: MdPlaylistAdd,
-    description: "Select any educational YouTube playlist that you want to learn from. Simply copy the playlist URL from YouTube's share button.",
-    tip: "Make sure your playlist is set to 'Public' or 'Unlisted' for best results."
-  },
-  {
-    title: "Upload & Process",
-    icon: MdUpload,
-    description: "Paste your playlist or notes URL in the upload section. Our AI system will process the content and make it easily accessible for you.",
-    tip: "For better results, ensure your internet connection is stable during upload."
-  },
-  {
-    title: "Browse Content",
-    icon: MdLibraryBooks,
-    description: "Access your processed content in an organized manner. Search, filter, and find exactly what you're looking for with our smart navigation.",
-    tip: "Use our search filters to quickly find specific topics or concepts."
-  }
-];
-
-const InstructionCard = ({ step, index }: { step: any; index: number }) => {
-  const Icon = step.icon;
-  return (
-    <motion.div 
-      className="instruction-card bg-black/30 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ 
-        duration: 0.4,
-        delay: index * 0.1
-      }}
-      style={{
-        willChange: 'opacity, transform'
-      }}
-    >
-      <div className="flex items-center mb-4">
-        <div className="w-12 h-12 bg-gradient-to-br from-purple-600 to-blue-600 rounded-full flex items-center justify-center">
-          <Icon className="w-6 h-6 text-white" />
-        </div>
-        <h3 className="text-xl font-semibold ml-4 text-white">
-          {step.title}
-        </h3>
-      </div>
-      <p className="text-gray-300 mb-4">
-        {step.description}
-      </p>
-      <div className="pro-tips-box bg-white/5 p-4 rounded-lg hover:bg-white/10 transition-colors">
-        <p className="text-sm text-purple-300">
-          <span className="font-semibold">💡 Pro Tip:</span>
-          <span className="tip-content"> {step.tip}</span>
-        </p>
-      </div>
-    </motion.div>
-  );
-};
-
-
-
-const SubjectCard = ({ subject, index }: { subject: any; index: number }) => {
-  return (
-    <motion.div 
-      className="bg-black/30 p-6 rounded-xl border border-white/10 hover:border-white/20 transition-all"
-      initial={{ opacity: 0 }}
-      whileInView={{ opacity: 1 }}
-      viewport={{ once: true }}
-      transition={{ 
-        duration: 0.4,
-        delay: index * 0.1
-      }}
-      style={{
-        willChange: 'opacity, transform'
-      }}
-    >
-      <div className="flex items-center mb-4">
-        <span className="text-4xl mr-4 transform hover:scale-110 transition-transform">
-          {subject.icon}
-        </span>
-        <h4 className="text-xl font-semibold text-white">
-          {subject.name}
-        </h4>
-      </div>
-      <div className="space-y-2">
-        <p className="text-gray-400 text-sm mb-3">Popular Playlists:</p>
-        {subject.playlists.map((playlist: string, i: number) => (
-          <motion.div 
-            key={i} 
-            className="bg-white/5 p-2 rounded-lg hover:bg-white/10 transition-colors"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ 
-              delay: i * 0.1,
-              duration: 0.3
-            }}
-          >
-            <p className="text-purple-300 text-sm">{playlist}</p>
-          </motion.div>
-        ))}
-      </div>
-    </motion.div>
-  );
-};
 
 export default function Home() {
   const [isModalOpen, setIsModalOpen] = useState(false);
